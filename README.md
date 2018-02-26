@@ -56,7 +56,7 @@ npm i thedevs-network/Contract
 
 ## Thanks to
 
-[Muthu Kumar](/MKRhere) for the original idea
+[@MKRhere](https://github.com/MKRhere) for the original idea
 
 ## API Reference
 
