@@ -63,10 +63,8 @@ const resolve = value =>
 		spread: f => Contract(f, ...value),
 		take: amount => Contract(take, amount, value),
 		tap: f => (f(value), resolve(value)),
-		then: (resolver, rejecter) =>
-			typeof rejecter === 'undefined'
-				? Contract(resolver, value)
-				: Contract(resolver, value).catch(rejecter),
+		then: resolver =>
+			Contract(resolver, value),
 		toArray: () => Contract(Array.from, value),
 		toString: () => Contract(String, value)
 	});
