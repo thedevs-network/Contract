@@ -1,6 +1,6 @@
 # Contract
 
-<img src="assets/contract.png" alt="Logo" style="width: 200px" />
+<img src="assets/contract.png" alt="Logo" width= "200px" />
 
 Hello, this is a **synchronous** continuation monad library, with the following goals:
 
