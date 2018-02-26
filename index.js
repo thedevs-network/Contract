@@ -108,6 +108,20 @@ Contract.reject = reject;
 
 Contract.isContract = isContract;
 
+Contract.all = values => {
+	const result = [];
+	let err;
+	const resolver = val => result.push(val);
+	const rejecter = e => err = e;
+	for (const item of values) {
+		Contract(item).then(resolver, rejecter);
+		if (err) {
+			return reject(err);
+		}
+	}
+	return resolve(result);
+};
+
 Contract.catch = f => c => c.catch(f);
 Contract.filter = f => c => c.filter(f);
 Contract.lazy = {
