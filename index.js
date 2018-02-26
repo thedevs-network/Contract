@@ -63,7 +63,10 @@ const resolve = value =>
 		spread: f => Contract(f, ...value),
 		take: amount => Contract(take, amount, value),
 		tap: f => (f(value), resolve(value)),
-		then: f => Contract(f, value),
+		then: (resolver, rejecter) =>
+			typeof rejecter === 'undefined'
+				? Contract(resolver, value)
+				: Contract(resolver, value).catch(rejecter),
 		toArray: () => Contract(Array.from, value),
 		toString: () => Contract(String, value)
 	});
@@ -91,7 +94,10 @@ const reject = value => {
 		spread: rejectValue,
 		take: rejectValue,
 		tap: rejectValue,
-		then: rejectValue,
+		then: (resolver, rejecter) =>
+			typeof rejecter === 'undefined'
+				? rejectValue
+				: Contract(rejecter, value),
 		toArray: rejectValue,
 		toString: rejectValue
 	};
@@ -116,7 +122,7 @@ Contract.reduce = f => c => c.reduce(f);
 Contract.take = amount => c => c.take(amount);
 Contract.tap = f => c => c.tap(f);
 Contract.toArray = c => c.toArray();
-Contract.then = f => c => c.then(f);
+Contract.then = (resolver, rejecter) => c => c.then(resolver, rejecter);
 Contract.toString = c => c.toString();
 
 module.exports = Contract;
