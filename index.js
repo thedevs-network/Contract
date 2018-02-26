@@ -1,6 +1,7 @@
 'use strict';
 
-const { inspect: { custom: inspectSymbol } } = require('util');
+const { inspect } = require('util');
+const { custom: inspectSymbol } = inspect;
 
 const err = require('./error');
 const { identity } = require('./symbols');
@@ -58,9 +59,9 @@ const resolve = value =>
 	({
 		[identity]: true,
 		[Symbol.toStringTag]: contractString,
-		[inspectSymbol]: (_, opts) =>
+		[inspectSymbol]: (depth, opts) =>
 			'Contract { ' +
-			opts.stylize(value, typeof value) +
+			inspect(value, { ...opts, depth }) +
 			' }',
 		catch: f => resolve(value),
 		filter: f => Contract(filter, f, value),
@@ -84,11 +85,11 @@ const reject = value => {
 	return {
 		[identity]: true,
 		[Symbol.toStringTag]: contractString,
-		[inspectSymbol]: (_, opts) =>
+		[inspectSymbol]: (depth, opts) =>
 			'Contract { ' +
 			opts.stylize('<rejected>', 'undefined') +
 			' ' +
-			opts.stylize(value, typeof value) +
+			inspect(value, { ...opts, depth }) +
 			' }',
 		catch: f => Contract(f, value),
 		filter: rejectValue,
