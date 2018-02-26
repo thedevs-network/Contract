@@ -105,6 +105,10 @@ Create a rejecting Contract from the given error (or value)
 
 Checks if the given value is a Contract
 
+### Contract.all
+
+Resolves an array of functions, values, or Contracts (rejects if any of the functions throw, return a rejecting Contract, or any Contract in the array is rejected)
+
 ### Instance methods
 
 All instance methods are also available as thunks, for Promise-interoperability:
