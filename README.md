@@ -1,6 +1,6 @@
 # Contract
 
-<img src="assets/contract.png" alt="Logo" width= "200px" />
+<img src="assets/contract.png" alt="Logo" width="200px" />
 
 Hello, this is a **synchronous** continuation monad library, with the following goals:
 
@@ -54,6 +54,12 @@ Contract.of(naturalNumbers())
 npm i thedevs-network/Contract
 ```
 
+## Roadmap
+
+* Make this library fully Promise-compatible (except async stuff)
+* Make it work in browsers
+* Have examples for all methods
+
 ## Thanks to
 
 [@MKRhere](https://github.com/MKRhere) for the original idea
@@ -64,7 +70,7 @@ npm i thedevs-network/Contract
 
 This is the complete function signature of the constructor:
 
-```
+```hs
 Contract(Contract | Promise | Function -> (Contract | Promise) | any[, ...args])
 -> Contract { any } | Promise { any }
 ```
