@@ -25,18 +25,6 @@ const isContract = value =>
 
 const contractString = () => 'Contract';
 
-const hide = obj => {
-	const result = {};
-	for (const key in obj) {
-		const value = obj[key];
-		result[key] = {
-			enumerable: typeof value === 'symbol',
-			value
-		};
-	}
-	return Object.defineProperties({}, result);
-};
-
 const Contract = (f, ...args) => {
 	if (isContract(f) || f instanceof Promise) {
 		return f;
