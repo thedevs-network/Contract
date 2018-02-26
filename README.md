@@ -13,19 +13,19 @@ Think of this as a synchronous Promise-API if it helps
 Here is a basic Promise-compatible example to let you know what this library can do for you:
 
 ```js
-Contract.resolve('He') // Contract<'He'>
-	.then(x => x + 'llo') // Contract<'Hello'>
-	.then(x => x.split('')) // Contract<[ 'H', 'e', 'l', 'l', 'o' ]>
-	.map(x => x.charCodeAt(0)) // Contract<[ 72, 101, 108, 108, 111 ]>
-	.map(x => x * 3) // Contract<[ 216, 303, 324, 324, 333 ]>
-	.filter(x => x % 2 === 0) // Contract<[ 216, 324, 324 ]>
-	.tap(console.log) // Contract<[ 216, 324, 324 ]>
+Contract.resolve('He') // Contract { 'He' }
+	.then(x => x + 'llo') // Contract { 'Hello'>
+	.then(x => x.split('')) // Contract { [ 'H', 'e', 'l', 'l', 'o' ] }
+	.map(x => x.charCodeAt(0)) // Contract { [ 72, 101, 108, 108, 111 ] }
+	.map(x => x * 3) // Contract { [ 216, 303, 324, 324, 333 ] }
+	.filter(x => x % 2 === 0) // Contract { [ 216, 324, 324 ] }
+	.tap(console.log) // Contract { [ 216, 324, 324 ] }
 	// Logs: [ 216, 324, 324 ]
-	.reduce((a, b) => a + b, 0) // Contract<864>
+	.reduce((a, b) => a + b, 0) // Contract { 864 }
 	.then(() => {
 		throw new Error('Hello World');
-	}) // Contract<(rejected) Error<Hello World>>
-	.catch(console.error); // Contract<undefined>
+	}) // Contract { (rejected) Error<Hello World> }
+	.catch(console.error); // Contract { undefined }
 ```
 
 It also supports laziness through generators!
@@ -56,7 +56,7 @@ This is the complete function signature of the constructor:
 
 ```
 Contract(Contract | Promise | Function -> (Contract | Promise) | any[, ...args])
--> Contract<any> | Promise<any>
+-> Contract { any } | Promise { any }
 ```
 
 Expressed in english:
@@ -67,7 +67,7 @@ Expressed in english:
 1. Otherwise, it will run the function with the provided rest arguments.
 1. If the function throws, it will return a rejecting `Contract`
 1. If the return value of the function is a `Contract` or a `Promise`, it will return that
-1. Otherwise, it will return `Contract<return value>`
+1. Otherwise, it will return `Contract { return value }`
 
 ### Contract.resolve
 
@@ -77,8 +77,8 @@ Expressed in english:
 
 Aliases, these three do the same: Create a contract from a value
 
-```
-Contract.resolve(<value>) -> Contract<value>
+```js
+Contract.resolve(value) -> Contract { value }
 ```
 
 ### Contract.reject
@@ -98,7 +98,7 @@ Promise.resolve(Contract.of([ 1, 2, 3 ]))
 	.then(Contract.map(x => x * 2))
 	.then(Contract.reduce((a, b) => a + b, 0))
 	.then(Contract.tap(console.log))
-	// Promise<Contract<12>>
+	// Promise { Contract { 12 } }
 ```
 
 ### Contract#then
