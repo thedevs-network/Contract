@@ -71,7 +71,7 @@ npm i thedevs-network/Contract
 This is the complete function signature of the constructor:
 
 ```hs
-Contract(Contract | Promise | Function -> (Contract | Promise) | any[, ...args])
+Contract(Contract | Promise | Function -> (Contract | Promise | any) | any[, ...args])
 -> Contract { any } | Promise { any }
 ```
 
