@@ -48,6 +48,16 @@ Contract.of(naturalNumbers())
 
 (This will only start iterating natural numbers after `.toArray()` has been called)
 
+## Installation
+
+```sh
+npm i thedevs-network/Contract
+```
+
+## Thanks to
+
+[Muthu Kumar](/MKRhere) for the original idea
+
 ## API Reference
 
 ### Contract
