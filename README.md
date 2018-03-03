@@ -14,7 +14,7 @@ Here is a basic Promise-compatible example to let you know what this library can
 
 ```js
 Contract.resolve('He') // Contract { 'He' }
-	.then(x => x + 'llo') // Contract { 'Hello'>
+	.then(x => x + 'llo') // Contract { 'Hello' }
 	.then(x => x.split('')) // Contract { [ 'H', 'e', 'l', 'l', 'o' ] }
 	.map(x => x.charCodeAt(0)) // Contract { [ 72, 101, 108, 108, 111 ] }
 	.map(x => x * 3) // Contract { [ 216, 303, 324, 324, 333 ] }
