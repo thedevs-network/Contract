@@ -1,5 +1,5 @@
 {
-  "name": "contract",
+  "name": "@thedevs/contract",
   "version": "0.1.0",
   "description": "Synchronous Promise-like API",
   "main": "index.js",

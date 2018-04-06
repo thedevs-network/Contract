@@ -51,7 +51,7 @@ Contract.of(naturalNumbers())
 ## Installation
 
 ```sh
-npm i thedevs-network/Contract
+npm i @thedevs/contract
 ```
 
 ## Roadmap
